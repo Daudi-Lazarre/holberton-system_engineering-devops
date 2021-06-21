@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This script displays a different message on the ninth line of the output.
+
+i=0
+# establish variable
+while [ $i -lt 11 ]
+# if the var equals nine,
+# print Hi
+# In any other case,
+# Print the other message
+do
+    if [ $i = 9 ]
+    then
+        echo "Hi"
+    else
+        echo "Holberton School"
+    fi
+    let i+=1
+done
