@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# This bash script displays a message ten times
+# displays Holberton School 10 times.
+
 for (( c=1; c<=10; c++ ))
 do
     echo "Holberton School"
