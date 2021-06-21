@@ -2,7 +2,6 @@
 # This script displays the time and stuff.
 
 i=0
-
 while [ $i -lt 13 ]
 do
     echo "Hour: $HOURS"
