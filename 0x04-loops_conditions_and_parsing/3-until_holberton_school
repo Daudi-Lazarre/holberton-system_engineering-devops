@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-# This script uses an until loop to get the same output as the
-# prior two scripts.
+# displays Holberton School 10 times.
 
-a=0
-# When the variable IS NOT less than 10
-until [ ! $a -lt 10 ]
+i=10
+until [ $i -lt 1 ]
 do
-   echo Holberton School
-   a+=1
+    echo "Holberton School"
+    let i-=1
 done
