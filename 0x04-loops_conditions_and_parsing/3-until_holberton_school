@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script uses an until loop to get the same output as the
+# prior two scripts.
+
+a=0
+
+until [ ! $a -lt 10 ]
+do
+   echo Holberton School
+   a=`expr $a + 1`
+done
