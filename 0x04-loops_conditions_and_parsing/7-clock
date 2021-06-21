@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script displays the time and stuff.
+
+i=0
+
+while [ $i -lt 13 ]
+do
+    echo "Hour: $HOURS"
+    x=1
+    while [ $x -lt 60 ]
+    do
+	echo $x
+	let x+=1
+    done
+    let i+=1
+done
