@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# displays Holberton School 10 times.
+
+imdonewithscripts=1
+while [ $imdonewithscripts -lt 101 ]
+do
+    if [ $((imdonewithscripts%15)) = 0 ]
+    then
+        echo "FizzBuzz"
+    elif [ $((imdonewithscripts%3)) = 0 ]
+    then
+        echo "Fizz"
+    elif [ $((imdonewithscripts%5)) = 0 ]
+    then
+        echo "Buzz"
+    else
+        echo "$COUNTER"
+    fi
+    (( imdonewithscripts+=1 ))
+done
