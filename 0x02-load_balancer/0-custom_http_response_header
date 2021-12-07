@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # Transfer information from client to server
 
-#!/usr/bin/env bash
-# install nginx, set up 404
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo echo "Hello World" | sudo tee /var/www/html/index.html
