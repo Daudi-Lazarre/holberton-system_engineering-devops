@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# What in the living heaven is this question asking of me?
+
+Host *
+    PasswordAuthentication no
+    IdentityFile ~/.ssh/school
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials no
