@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# What in the living heaven is this question asking of me?
+# How to configure SSH file
 
 Host *
     PasswordAuthentication no
