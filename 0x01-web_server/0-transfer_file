@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Running transfer to server...
 
 if [ $# -ne 4 ];
 then
