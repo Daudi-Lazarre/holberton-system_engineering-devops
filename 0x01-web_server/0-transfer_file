@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Beep-Boop: Running transfer to server...
 
 if [ $# -ne 4 ];
 then
