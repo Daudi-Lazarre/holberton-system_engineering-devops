@@ -1,15 +1,15 @@
 #!/usr/bin/python3
 '''Using an API, show employee's completed tasks'''
-import requests
+import urllib
 import sys
 
 
 if __name__ == '__main__':
     if len(sys.argv) == 2 and sys.argv[1].isdigit():
-        usr = requests.get("https://jsonplaceholder.typicode.com/users/{}"
+        usr = urllib.get("https://jsonplaceholder.typicode.com/users/{}"
                            .format(sys.argv[1])
                            ).json()
-        todos = requests.get(
+        todos = urllib.get(
             "https://jsonplaceholder.typicode.com/todos/?userId={}"
             .format(sys.argv[1])
         ).json()
