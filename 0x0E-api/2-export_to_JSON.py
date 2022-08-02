@@ -1,57 +1,39 @@
 #!/usr/bin/python3
-"""
-Pulls some 'employee' data from a fake api
-"""
+'''pull todo list for employee and write to json file'''
 import json
 import requests
-from sys import argv
+import sys
 
+# { "USER_ID": [{
+# "task": "TASK_TITLE",
+# "completed": TASK_COMPLETED_STATUS,
+# "username": "USERNAME"}
+# ]}
 
-if __name__ == "__main__":
-    """the main code"""
-    usersurl = "https://jsonplaceholder.typicode.com/users/"
-    todosurl = "https://jsonplaceholder.typicode.com/todos/?userId="
-    try:
-        employeeid = int(argv[1])
-    except (ValueError, TypeError):
-        raise TypeError(
-            "Employee ID must be an integer. Syntax: {} <employeeid>".format(
-                argv[0]))
-    # print(employeeid)
-    requesturl = usersurl + str(employeeid)
-    response = requests.get(requesturl)
-    # print(response.json())
-    reply = response.json()
-    # print(reply["name"])
-    name = reply.get("name")
-    username = reply.get("username")
-    requesturl = todosurl + str(employeeid)
-    response = requests.get(requesturl)
-    reply = response.json()
-    task_list = []
-    for item in reply:
-        new_dict = {
-            "task": item.get("title"),
-            "completed": item.get("completed"),
-            "username": username
+if __name__ == '__main__':
+    if len(sys.argv) == 2 and sys.argv[1].isdigit():
+        usr = requests.get("https://jsonplaceholder.typicode.com/users/{}"
+                           .format(sys.argv[1])
+                           ).json()
+        todos = requests.get(
+            "https://jsonplaceholder.typicode.com/todos/?userId={}"
+            .format(sys.argv[1])
+        ).json()
+
+        print('Employee {} is done with tasks({}/{}):'.format(
+            usr.get("name"),
+            len([x for x in todos if x.get("completed")]),
+            len(todos)
+        ))
+        print('\n'.join('\t {}'.format(x.get("title"))
+              for x in todos if x.get('completed')))
+
+        # write to json file
+        with open('{}.json'.format(sys.argv[1]), 'w') as f:
+            jdump = {sys.argv[1]: [{
+                'task': td.get('title'),
+                'username': usr.get('username'),
+                'completed': td.get('completed')
+            } for td in todos]
             }
-        task_list.append(new_dict)
-    done_dict = {str(employeeid): task_list}
-    out_file = open("{}.json".format(str(employeeid)), "w")
-    json.dump(done_dict, out_file)
-    out_file.close()
-    # print("made dict: {}".format(done_dict))
-    # print(reply)
-    # print(len(reply))
-    tasksqty = len(reply)
-    requesturl = requesturl + "&completed=true"
-    response = requests.get(requesturl)
-    reply = response.json()
-    completedtasksqty = len(reply)
-    # print(len(reply))
-    print("Employee {} is done with tasks({}/{}):".format(
-        name, completedtasksqty, tasksqty
-    ))
-    for task in reply:
-        # print("task title: {}".format(task["title"]))
-        print("\t {}".format(task.get("title")))
+            json.dump(jdump, f)
