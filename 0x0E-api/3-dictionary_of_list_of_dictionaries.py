@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 '''pull todo list for employee and write to json file'''
 import json
-import requests
+# import requests
 import sys
 
 # { "USER_ID": [ {
